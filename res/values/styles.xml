@@ -1,0 +1,8 @@
+<resources>
+	<style name="CustomDialogTheme">
+		<item name="android:windowBackground">@drawable/launcher_background</item>
+	</style>
+	<style name="CustomDialogTheme2">
+        <item name="android:windowBackground">@drawable/wine_casks</item>
+    </style>
+</resources>

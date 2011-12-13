@@ -1,0 +1,31 @@
+package com.simplywineandfood;
+
+import java.util.ArrayList;
+
+/** Contains getter and setter method for varialbles */
+public class TODHandler 
+{
+	/** Variables */
+	private String WineName = "";
+	private String TipOfTheDay = "";
+	
+	public String getWineName() 
+	{
+		return WineName;
+	}
+	
+	public void setWineName(String name) 
+	{
+		WineName = name;
+	}
+	
+	public String getTipOfTheDay() 
+	{
+		return TipOfTheDay;
+	}
+	
+	public void setTipOfTheDay(String name) 
+	{
+		TipOfTheDay = name;
+	}
+}

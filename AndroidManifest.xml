@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="com.simplywineandfood"
+      android:versionCode="4"
+      android:versionName="1.3">
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk android:minSdkVersion="4" />
+    
+    <application 
+        android:icon="@drawable/launcher" 
+    	android:label="@string/app_name">	
+      	<uses-library android:name="com.google.android.maps" />
+    
+        <activity android:name=".SimplyWineActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/CustomDialogTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    
+        <activity android:name=".SpiceNoteActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/CustomDialogTheme2">
+        </activity>
+    
+        <activity android:name=".ReciepeActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/CustomDialogTheme2">
+        </activity>
+        <activity android:name=".WineDetailsActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/CustomDialogTheme2">
+        </activity>       
+        
+        <!-- The application's publisher ID assigned by AdMob -->
+		<meta-data android:value="a14d5c9d28536c4" android:name="ADMOB_PUBLISHER_ID" />
+		<!-- AdMobActivity definition -->
+		<activity 
+			android:name="com.admob.android.ads.AdMobActivity"
+			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+			android:configChanges="orientation|keyboard|keyboardHidden" 
+		/>
+		<!-- Track Market installs -->
+		<receiver 
+			android:name="com.admob.android.ads.analytics.InstallReceiver"
+			android:exported="true">
+			<intent-filter>
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+			</intent-filter>
+		</receiver>
+		<meta-data android:value="true" android:name="ADMOB_ALLOW_LOCATION_FOR_ADS"/>
+    </application>
+</manifest> 

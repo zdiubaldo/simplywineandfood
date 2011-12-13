@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:myapp="http://schemas.android.com/apk/res/com.simplywineandfood"
+	android:layout_height="fill_parent"
+	>
+	<TableLayout 	
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:stretchColumns="0,1,2"
+	    >
+	    <TableRow>
+	    	<Button
+	    		android:layout_column="1"
+		   		android:background="#00000000" 
+		   		android:gravity="center_horizontal"
+		   		android:id="@+id/wineOfTheDayBtn"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:drawableTop="@drawable/wotd"
+		    	android:textColor="#FFFF00"
+		    	android:text="WOTD"
+		    />			    
+	    </TableRow>	       
+	    <TableRow>	    
+	    	<Button
+	    		android:layout_column="0"
+		   		android:background="#00000000" 
+		   		android:id="@+id/wineBtn"
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:drawableTop="@drawable/wine"
+		    	android:padding="15dip" 
+		    	android:textColor="#FFFF00"
+		    	android:text="Wine"
+		    />		    	
+			<Button 
+				android:layout_column="2"	
+		   		android:background="#00000000"  
+		   		android:id="@+id/spicenoteBtn"	
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:drawableTop="@drawable/food"
+		    	android:text="Entree"
+		    	android:textColor="#FFFF00"   	
+		    	android:padding="15dip" 
+		    />		    
+	    </TableRow>	     
+		<TableRow>	
+		   	<Button 
+                android:layout_column="0"
+                android:background="#00000000"  
+                android:id="@+id/dessertBtn"   
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/dessert" 
+                android:text="Dessert"
+                android:textColor="#FFFF00"
+                android:padding="15dip" 
+            />  
+		    <Button 
+		    	android:layout_column="2"
+		   		android:background="#00000000"  
+		   		android:id="@+id/cheeseBtn"	
+		    	android:layout_width="wrap_content"
+		    	android:layout_height="wrap_content"
+		    	android:drawableTop="@drawable/cheese" 
+		    	android:text="Cheese"
+		    	android:textColor="#FFFF00"
+		    	android:padding="15dip" 
+		    />		    
+		</TableRow>
+		<TableRow>
+		    <Button
+		        android:gravity="center_horizontal"
+                android:layout_column="1"
+                android:background="#00000000" 
+                android:id="@+id/soupBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/soup" 
+                android:text="Soup"
+                android:textColor="#FFFF00"
+                android:padding="15dip" 
+            />			    	    
+		</TableRow>		
+	</TableLayout>
+	<LinearLayout 
+    	android:layout_width="fill_parent"
+		android:id="@+id/ad_layout"
+		android:layout_height="wrap_content"
+		android:gravity="bottom"
+		android:layout_alignParentBottom="true"		
+		android:layout_alignBottom="@+id/home_layout">
+<!-- 		<com.admob.android.ads.AdView -->
+<!-- 					android:id="@+id/ad" -->
+<!-- 					android:layout_width="fill_parent" -->
+<!-- 					android:layout_height="wrap_content" -->
+<!-- 					myapp:backgroundColor="#000000" -->
+<!-- 					myapp:primaryTextColor="#FFFFFF" -->
+<!-- 					myapp:secondaryTextColor="#CCCCCC" -->
+<!-- 					myapp:refreshInterval="30"  -->
+<!-- 		/> -->
+	</LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,266 @@
+package com.simplywineandfood;
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.admob.android.ads.AdView;
+import android.app.Activity;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images;
+import android.provider.MediaStore.Images.Media;
+import android.util.Log;
+import android.view.View;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+
+public class WineLogActivity extends Activity 
+{		
+	// Globals
+	winelogDBManger wineLogDB = null;
+	DbManager mydb = null;
+	String LOG_TAG = "SimplyWineFood";
+	Uri imageUri;
+	EditText wineLogWineName;
+	EditText wineLogWineRegion;
+	EditText wineLogWineColor;
+	EditText wineLogDescription;
+	RatingBar wineLogRating;
+	ImageButton wineButton;
+	private static final int CAMERA_PIC_REQUEST = 1337;  
+	
+	/** Called when the activity is first created. */
+    @Override
+    public void onCreate(Bundle savedInstanceState) 
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.winelog_layout);
+        
+        // grab passed in args from parent activity
+        Bundle myBundle = this.getIntent().getExtras();
+        if (myBundle != null)
+        {        	
+        	//wineChoice = myBundle.getString("wineDetailsChoice");
+        }         
+        
+        // grab a handle to the Wine log DB
+        try
+        {
+        	wineLogDB = winelogDBManger.getInstance(this);
+        }
+        catch (Exception e)
+        {
+        	Log.v(LOG_TAG, "SimplyWineActivity: could not get DbManager.getInstance");
+        }
+        
+        // grab layout controls
+        wineLogWineName = (EditText) findViewById(R.id.wineLogWineName); 
+        wineLogWineRegion = (EditText) findViewById(R.id.wineLogWineRegion);
+    	wineLogWineColor = (EditText) findViewById(R.id.wineLogWineColor);
+    	wineLogDescription = (EditText) findViewById(R.id.wineLogDescription);
+    	wineLogRating = (RatingBar) findViewById(R.id.wineLogRating);
+        wineButton = (ImageButton) findViewById(R.id.wineLogLabelPicBtn);
+        
+        // work with the DB
+        try
+        {
+        	mydb = DbManager.getInstance(this);
+        }
+        catch (Exception e)
+        {
+        	Log.v(LOG_TAG, "WineDetailsActivity: could not get DB");
+        }        
+        
+        AdView adView = (AdView)this.findViewById(R.id.ad);
+        try
+        {
+	        // request ad
+	        adView.requestFreshAd();
+        }
+        catch (Exception e)
+        {
+        	Log.v(LOG_TAG, "SpiceNoteActivity: could not get Ad");
+        }        
+        
+    }
+    
+    public void wineLogTakeAPic(View button)
+    {    	
+  /*  	
+    	File imageDirectory = new File("/sdcard/signifio");
+        String path = imageDirectory.toString().toLowerCase();
+        String name = imageDirectory.getName().toLowerCase();
+
+        //define the file-name to save photo taken by Camera activity
+        String fileName = "new-photo-name.jpg";
+        //create parameters for Intent with filename
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, fileName);
+        values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
+        //imageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
+        imageUri = getContentResolver().insert(
+        		MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        //create new Intent
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+       
+        startActivityForResult(intent, CAMERA_PIC_REQUEST);
+*/
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, CAMERA_PIC_REQUEST);
+        
+        /*
+    	Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+    	//cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File("/sdcard/tmp")));
+    	cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+    	/*
+        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, 
+        		              Uri.fromFile(new File("/sdcard/cats.jpg")));
+        /*
+        cameraIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, 
+        		              android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                      
+    	startActivityForResult(cameraIntent, CAMERA_PIC_REQUEST);   
+    	*/
+    	
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) 
+    {
+    	super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CAMERA_PIC_REQUEST) 
+        {  
+        	if (resultCode == RESULT_OK) 
+        	{
+        		
+        		String timestamp = Long.toString(System.currentTimeMillis());
+        		  // get the picture
+        		Bitmap mPicture = (Bitmap) data.getExtras().get("data");
+
+        		// save image to gallery
+        		MediaStore.Images.Media.insertImage(getContentResolver(), mPicture, timestamp, timestamp);
+        		Uri uri = MediaStore.Images.Thumbnails.getContentUri("external");
+
+        		Cursor cursor = MediaStore.Images.Thumbnails.queryMiniThumbnails(getContentResolver(), 
+        				                                                         uri, 
+        				                                                         MediaStore.Images.Thumbnails.MICRO_KIND, 
+        				                                                         null);
+
+        		Long _imageId = null;
+        		cursor.moveToFirst();
+        		while(true)
+        		{
+        			
+        			for(int i=0;i<cursor.getColumnCount();i++)
+        		    {
+        				if(cursor.getColumnName(i).equals("image_id")) 
+        				{
+        					_imageId = Long.parseLong(cursor.getString(i));
+        				}
+        		    }
+        			if(cursor.isLast())
+        			{
+        				break;
+        			} 
+        			else 
+        			{
+        				cursor.moveToNext();
+        			}
+        		}
+        		
+        		// Get Bitmap and scale to default icon size
+        		Bitmap tmp = MediaStore.Images.Thumbnails.getThumbnail(getContentResolver(), _imageId, MediaStore.Images.Thumbnails.MICRO_KIND, null);
+        		tmp = Bitmap.createScaledBitmap(tmp, 84, 84, true);
+        		// Update ImageButton icon
+        		wineButton.setImageBitmap(tmp);
+
+        		// save image to SD card
+        		try 
+        		{
+        			File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/simplywineandfood/winelog/images");
+        		    if(!directory.exists())
+        		    {
+        		    	directory.mkdir();
+        		    }
+        		    FileOutputStream fos = new FileOutputStream(directory+"/"+timestamp+".jpg");
+        		    Environment.getExternalStorageDirectory().mkdir();
+        		    mPicture.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+        		} 
+        		catch (Exception e) 
+        		{
+        		   e.printStackTrace();
+        		}
+        	}
+        	else if (resultCode == RESULT_CANCELED) 
+        	{
+        		int i = 0;
+		    } 
+        	else 
+        	{
+        		int i = 0;
+		    }        	
+        	
+        }  
+    }
+    
+    public void wineLogOKBtn(View button)
+    {    	
+    	wineLogDB.addItemToDB(wineLogWineName.getText().toString(),
+    			              wineLogDescription.getText().toString(),
+    			              "test",
+    			              wineLogWineRegion.getText().toString(),
+    			              wineLogWineColor.getText().toString(),
+    			              wineLogRating.getNumStars());
+    	
+    	// when done time to exit
+        finish();
+    }  
+    
+    public void wineLogCancelBtn(View button)
+    {     	
+    	// when done time to exit
+        finish();
+    }  
+     
+    
+    /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) 
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.optional_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) 
+    {
+        // Handle item selection
+        switch (item.getItemId()) 
+        {
+        case R.id.optional_quit:
+            finish();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
+    }
+    */
+}

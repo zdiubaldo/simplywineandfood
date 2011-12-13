@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="wrap_content"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:myapp="http://schemas.android.com/apk/res/com.simplywineandfood"
+	android:layout_height="fill_parent"
+	> 
+	<LinearLayout 		
+		android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+		<Spinner 
+			android:id="@+id/foodSelect"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:drawSelectorOnTop="true"
+	        android:prompt="@string/food_select_prompt"
+	    />
+	    <Spinner 
+	    	android:id="@+id/spiceSelect"
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:drawSelectorOnTop="true"
+	        android:prompt="@string/spice_select_prompt"
+	    />
+	    <ListView 
+	    	android:id="@+id/resultsView" 
+	    	android:layout_weight="0"
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="fill_parent" 
+	    />
+    </LinearLayout>
+    
+    <LinearLayout 
+    	android:layout_weight="2"
+    	android:layout_width="fill_parent"
+		android:id="@+id/ad_layout"
+		android:layout_height="wrap_content"
+		android:gravity="bottom"
+		android:layout_alignParentBottom="true"		
+		android:layout_alignBottom="@+id/home_layout">     
+	    <com.admob.android.ads.AdView
+			android:id="@+id/ad"
+			android:layout_weight="3"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			myapp:backgroundColor="#000000"
+			myapp:primaryTextColor="#FFFFFF"
+			myapp:secondaryTextColor="#CCCCCC"
+			myapp:refreshInterval="30" 
+		/>
+	</LinearLayout>    
+</RelativeLayout>
+

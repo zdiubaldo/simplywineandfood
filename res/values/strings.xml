@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, SimplyWineActivity!</string>
+    <string name="app_name">SimplyWine&amp;Food</string>
+    <string name="food_select_prompt">Choose a Food</string>
+    <string name="spice_select_prompt">Choose a Spice</string>
+    <string name="reciepe_select_prompt">Choose a Recipe</string>
+    <string name="soup_select_prompt">Choose a Soup</string>
+    <string name="wine_select_prompt">Choose a Wine</string>
+    <string name="dessert_select_prompt">Choose a Dessert</string>
+    <string name="cheese_select_prompt">Choose a Cheese</string>
+    <string name="mapitButtonString">MapIt!</string>
+    <string name="foodTypeSpinnerString">Select Food</string>
+    <string name="spiceTypeSpinnerString">Select Spice</string> 
+    <string name="ColorRed">#660033</string> 
+    <string name="ColorWhite">#FFFF00</string> 
+    <string name="Quit">Quit</string> 
+    <string name="wineLogWineNameLabel">Wine Name</string>
+    <string name="wineLogGrapeLabel">Wine Grape</string>
+    <string name="wineLogWineDescriptionLabel">Wine Description</string>
+    <string name="wineLogOKBtn">OK</string>
+    <string name="wineLogCancelBtn">Cancel</string>
+    <string-array name="wine_color_list">
+    	<item>Red</item>     
+    	<item>White</item>
+	</string-array>
+	<string-array name="spice_select_list">
+    	<item>Select Spice</item>     
+    	<item>Garlic</item>
+    	<item>Onion</item>
+    	<item>Peppercorn</item>
+    	<item>Mustard</item>
+    	<item>Tomato</item>
+    	<item>Herbs</item>
+    	<item>BBQ</item>
+	</string-array>
+	<string-array name="recipe_select_list">
+    	<item>Select Recipe</item>     
+    	<item>Golden and Crimson Beet Salad with Oranges</item>
+    	<item>Spicy Green Salad with Manchego and Pears </item>
+    	<item>Filet Mignon Diana</item>
+    	<item>Briased Pot Roast with Vegetables</item>
+    	<item>Double Cut Pork Chop with Mustard Sauce </item>
+    	<item>Herb-Marinated Flank Steak with Bread Salad</item>
+    	<item>Grilled Lamb Chops with Tomato-Chimichurri Sauce</item>
+	</string-array>
+</resources>
