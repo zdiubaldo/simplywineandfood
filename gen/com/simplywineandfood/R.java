@@ -68,12 +68,13 @@ containing a value of this type.
         public static final int icon=0x7f020006;
         public static final int launcher=0x7f020007;
         public static final int launcher_background=0x7f020008;
-        public static final int optinal_menu=0x7f020009;
-        public static final int soup=0x7f02000a;
-        public static final int wine=0x7f02000b;
-        public static final int wine_casks=0x7f02000c;
-        public static final int wine_casks_bk=0x7f02000d;
-        public static final int wotd=0x7f02000e;
+        public static final int launcher_background_s=0x7f020009;
+        public static final int optinal_menu=0x7f02000a;
+        public static final int soup=0x7f02000b;
+        public static final int wine=0x7f02000c;
+        public static final int wine_casks=0x7f02000d;
+        public static final int wine_casks_bk=0x7f02000e;
+        public static final int wotd=0x7f02000f;
     }
     public static final class id {
         public static final int ad=0x7f08000b;
