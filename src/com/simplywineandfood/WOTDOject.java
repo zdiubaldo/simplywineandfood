@@ -15,6 +15,11 @@ public class WOTDOject {
 	
 	WOTDOject()
 	{
+		clearData();		
+	}
+	
+	public void clearData()
+	{
 		WINE_NAME = "";	
 		WINE_GRAPE = "";
 		PRONUNCIATION = "";

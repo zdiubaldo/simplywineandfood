@@ -371,7 +371,8 @@ public class DbManager extends SQLiteOpenHelper {
 	    			                 WOTD_TYPE_TABLE + 
 	    			                 " WHERE _id=" + day, 
 	    			                 null);
-	    	cur.moveToFirst();	        
+	    	cur.moveToFirst();
+	    	wotdObject.clearData();
 	        while (cur.isAfterLast() == false) 
 	        {
 	        	if (cur.getColumnIndex("CHEESE_DESSERTS") >= 0)

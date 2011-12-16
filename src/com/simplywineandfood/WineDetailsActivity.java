@@ -1,6 +1,8 @@
 package com.simplywineandfood;
 
 
+import java.util.Random;
+
 import com.admob.android.ads.AdView;
 
 import android.app.Activity;
@@ -193,7 +195,8 @@ public class WineDetailsActivity extends Activity
     	WOTDOject wotdObj = null;
     	try
         {
-    		wotdObj = mydb.getWOTDTableData(1);
+    		Random randNum = new Random();
+    		wotdObj = mydb.getWOTDTableData(randNum.nextInt(13));
 	        
         }
         catch (Exception e)
@@ -227,35 +230,35 @@ public class WineDetailsActivity extends Activity
         webText = webText + "</ul></dd>";
         webText = webText +	"<dl><dt>Wine Details:</dt>";
         webText = webText +	"<dd><ul TYPE=DISK>";
-        if(wotdObj.WINE_COLOR != "")
+        if(!wotdObj.WINE_COLOR.equals(""))
         {
         	webText = webText + "<li>COLOR: " + wotdObj.WINE_COLOR + "</li>";
         }
-        if (wotdObj.WINE_DETAILS != "")
+        if (!wotdObj.WINE_DETAILS.equals(""))
         {
         	webText = webText + "<li>DETAILS: " + wotdObj.WINE_DETAILS + "</li>";
         }
-        if (wotdObj.WINE_PAIRING != "")
+        if (!wotdObj.WINE_PAIRING.equals(""))
         {
         	webText = webText + "<li>PAIRING: " + wotdObj.WINE_PAIRING + "</li>";
         }
-        if (wotdObj.WINE_BRANDS != "")
+        if (!wotdObj.WINE_BRANDS.equals(""))
         {
         	webText = webText + "<li>BRANDS: " + wotdObj.WINE_BRANDS + "</li>";
         }
-        if (wotdObj.WEBSITE_LINK != "")
+        if (!wotdObj.WEBSITE_LINK.equals(""))
         {
         	webText = webText + "<li>WEB LINK: " + wotdObj.WEBSITE_LINK + "</li>";
         }
-        if (wotdObj.CHEESE_DESSERTS != "")
+        if (!wotdObj.CHEESE_DESSERTS.equals(""))
         {
         	webText = webText + "<li>CHEESE DESSERTS: " + wotdObj.CHEESE_DESSERTS + "</li>";
         }
-        if (wotdObj.SOUPS != "")
+        if (!wotdObj.SOUPS.equals(""))
         {
         	webText = webText + "<li>SOUPS: " + wotdObj.SOUPS + "</li>";
         }
-        if (wotdObj.SALADS_APPETISERS != "")
+        if (!wotdObj.SALADS_APPETISERS.equals(""))
         {
         	webText = webText + "<li>SALADS APPETISERS: " + wotdObj.SALADS_APPETISERS + "</li>";
         }
