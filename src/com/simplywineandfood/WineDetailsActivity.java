@@ -1,6 +1,8 @@
 package com.simplywineandfood;
 
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 import com.admob.android.ads.AdView;
@@ -195,8 +197,18 @@ public class WineDetailsActivity extends Activity
     	WOTDOject wotdObj = null;
     	try
         {
-    		Random randNum = new Random();
-    		wotdObj = mydb.getWOTDTableData(randNum.nextInt(13));
+    		Calendar calendar = new GregorianCalendar();
+    		int day = calendar.get(Calendar.DAY_OF_MONTH);
+    		int wotdID = 0;
+    		if (day <= 16)
+    		{
+    			wotdID = day + 16;
+    		}
+    		else
+    		{
+    			wotdID = day - 16;
+    		}
+    		wotdObj = mydb.getWOTDTableData(wotdID);
 	        
         }
         catch (Exception e)
@@ -250,17 +262,25 @@ public class WineDetailsActivity extends Activity
         {
         	webText = webText + "<li>WEB LINK: " + wotdObj.WEBSITE_LINK + "</li>";
         }
-        if (!wotdObj.CHEESE_DESSERTS.equals(""))
+        if (!wotdObj.CHEESE.equals(""))
         {
-        	webText = webText + "<li>CHEESE DESSERTS: " + wotdObj.CHEESE_DESSERTS + "</li>";
+        	webText = webText + "<li>CHEESE: " + wotdObj.CHEESE + "</li>";
+        }
+        if (!wotdObj.DESSERTS.equals(""))
+        {
+        	webText = webText + "<li>DESSERTS: " + wotdObj.DESSERTS + "</li>";
         }
         if (!wotdObj.SOUPS.equals(""))
         {
         	webText = webText + "<li>SOUPS: " + wotdObj.SOUPS + "</li>";
         }
-        if (!wotdObj.SALADS_APPETISERS.equals(""))
+        if (!wotdObj.SALADS.equals(""))
         {
-        	webText = webText + "<li>SALADS APPETISERS: " + wotdObj.SALADS_APPETISERS + "</li>";
+        	webText = webText + "<li>SALADS: " + wotdObj.SALADS + "</li>";
+        }
+        if (!wotdObj.APPETISERS.equals(""))
+        {
+        	webText = webText + "<li>APPETISERS: " + wotdObj.APPETISERS + "</li>";
         }
         webText = webText + "</ul></dd>";
         webText = webText + "</dl></body></html>";

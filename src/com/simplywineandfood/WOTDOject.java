@@ -9,9 +9,11 @@ public class WOTDOject {
 	public String WINE_PAIRING;
 	public String WINE_BRANDS;
 	public String WEBSITE_LINK;
-	public String CHEESE_DESSERTS;
+	public String DESSERTS;
+	public String CHEESE;
 	public String SOUPS;
-	public String SALADS_APPETISERS;
+	public String SALADS;
+	public String APPETISERS;
 	
 	WOTDOject()
 	{
@@ -28,8 +30,10 @@ public class WOTDOject {
 		WINE_PAIRING = "";
 		WINE_BRANDS = "";
 		WEBSITE_LINK = "";
-		CHEESE_DESSERTS = "";
+		CHEESE = "";
+		DESSERTS = "";
 		SOUPS = "";
-		SALADS_APPETISERS = "";			
+		SALADS = "";
+		APPETISERS = "";			
 	}
 }

@@ -14,7 +14,7 @@ import android.util.Log;
 public class DbManager extends SQLiteOpenHelper {
 	 
 	private static final String LOG_TAG = "SimplyWineFood";
-    private static final String DB_NAME = "simplywineandfood_v4";
+    private static final String DB_NAME = "simplywineandfood_v7";
     private static final String DB_PATH = "/data/data/com.simplywineandfood/databases/";
     private static final Integer DB_VERSION = 1;
     private static final String TAG = "DbManager";
@@ -345,7 +345,7 @@ public class DbManager extends SQLiteOpenHelper {
 	        // set the first entry to a static string
 	        // this is because in the spinner box we want to always ignore
 	        // the position 0 or the first entry
-	        dessertType[0] = "Select Soup";
+	        dessertType[0] = "Select Dessert";
 	        while (cur.isAfterLast() == false) 
 	        {
 	        	// do getPosition()+1 because Cursor starts at 0
@@ -375,17 +375,25 @@ public class DbManager extends SQLiteOpenHelper {
 	    	wotdObject.clearData();
 	        while (cur.isAfterLast() == false) 
 	        {
-	        	if (cur.getColumnIndex("CHEESE_DESSERTS") >= 0)
+	        	if (cur.getColumnIndex("CHEESE") >= 0)
 	        	{
-	        		wotdObject.CHEESE_DESSERTS = cur.getString(cur.getColumnIndex("CHEESE_DESSERTS"));
+	        		wotdObject.CHEESE = cur.getString(cur.getColumnIndex("CHEESE"));
+	        	}
+	        	if (cur.getColumnIndex("DESSERTS") >= 0)
+	        	{
+	        		wotdObject.DESSERTS = cur.getString(cur.getColumnIndex("DESSERTS"));
 	        	}
 	        	if (cur.getColumnIndex("PRONUNCIATION") >= 0)
 	        	{
 	        		wotdObject.PRONUNCIATION = cur.getString(cur.getColumnIndex("PRONUNCIATION"));
 	        	}	        	
-	        	if (cur.getColumnIndex("SALADS_APPETISERS") >= 0)
+	        	if (cur.getColumnIndex("SALADS") >= 0)
 	        	{
-	        		wotdObject.SALADS_APPETISERS = cur.getString(cur.getColumnIndex("SALADS_APPETISERS"));
+	        		wotdObject.SALADS = cur.getString(cur.getColumnIndex("SALADS"));
+	        	}
+	        	if (cur.getColumnIndex("APPETISERS") >= 0)
+	        	{
+	        		wotdObject.APPETISERS = cur.getString(cur.getColumnIndex("APPETISERS"));
 	        	}
 	        	if (cur.getColumnIndex("SOUPS") >= 0)
 	        	{
